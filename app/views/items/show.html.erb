@@ -1,0 +1,44 @@
+<% @room = Room.find(@item.room_id) #the Room this item is in %>
+<% @owner = User.where(:id => @room.user_id).first.kerberos %>
+
+<div id="head"><b>Name:</b><%= @item.name %></div>
+<div id="show">
+<p>
+  <% if @item.status == 'active' %>
+	This item is in <%= @owner %>'s room.
+  <% elsif @item.status == 'claimed' %>
+    This item is from <%= @owner %>'s room, claimed by <%= User.find(@item.bag_id).kerberos %>.
+  <% else %>
+	This item has been purchased.
+  <% end %>
+</p>
+
+<p><b>Price:</b><%= number_to_currency(@item.price) %></p>
+<p><b>Description:</b><%= @item.description %></p>
+
+<% if @item.status == 'active' %>
+	<% if @item.room != current_user.room %>
+		<p><%= link_to 'Add Item to Bag', addto_path(@item.id) %></p>
+	<% else %>
+		<p><%= link_to 'Edit Item', edit_item_path(@item.id) %></p>
+	<% end %>
+<% end %>
+
+
+<!-- uneeded info currently -->
+<!--
+<p>
+<td class='image'>
+<% if @item.photo.exists? then %>
+	<%= image_tag @item.photo.url(:thumb) %>
+<% end %>
+</td>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @item.status %>
+</p>-->
+
+
+</div>

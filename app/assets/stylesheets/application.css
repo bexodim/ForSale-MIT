@@ -1,0 +1,120 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ 
+ #wrapper {
+	padding: 20px;
+	float: none;
+ }
+
+#user_nav {
+	min-width: 45%;
+	height: 80px;
+	display: inline;
+	float: right;
+	color: black;
+	font-family: Arial, sans-serif;
+	font-size: 1.5em;
+	text-decoration: none;
+}
+
+.navigation a {
+	color: #4D4D4D;
+	text-decoration: overline;
+}
+.navigation a:hover {
+	color: #1A1A1A;
+}
+
+#title {
+float: left;
+font-size: 60px;
+}
+
+#title a {
+	background-color: white;
+	font-weight: normal;
+}
+
+#head {
+	font-size: 2.5em;
+	font-weight: 600;
+	padding-bottom: 40px;
+}
+
+#flash_notice, #flash_alert {
+  position: absolute;
+  top: 40px;
+  right: 25px;
+  padding: 2px;
+  margin: 10px 0;
+  font-size: .5em;
+}
+#flash_notice {
+  color: #CB2020;
+  background-color: #FFF;
+  border: solid 1px #CB2020;
+}
+#flash_alert {
+  color: #CB2020;
+  background-color: #FFF;
+  border: solid 1px #CB2020;
+}
+
+#loggedin {
+	position:relative;
+	bottom: 40px;
+	color: black;
+	background: white;
+	float: right;
+	}
+
+#user_nav ul, li {
+	display: inline;
+	padding: 15px;
+	font-size: 1em;
+	float: right;
+}
+
+#content {
+	display: inline-block;
+	width: 100%;
+	padding:0;
+	text-align: left;
+}
+
+
+.mini {
+	padding: 0;
+	margin: 0 2px 0 2px;
+	font-size: 1em;
+}
+
+table.itemlist {
+	margin: 0;
+}
+
+table.itemlist td {
+	min-width: 80px;
+	padding: 5px;
+}
+
+table.itemlist th {
+	background-color: #FAFAFA;
+}
+
+
+td.image {
+	min-width: 80px;
+}

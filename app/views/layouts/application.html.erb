@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OdimProj2</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+		<div id="top">
+			<div id="title"><%= link_to "ForSale@MIT", items_path %></div>
+			<div id="user_nav">
+				<% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				<% end %>
+				<br>
+				<div id="loggedin">
+				<% if current_user %>
+					<p class="loggedin">Logged in as <%= current_user.kerberos %>.
+					<%= link_to "Log out", logout_path %></p>
+				</div>
+    
+					<ul class="navigation">
+						<li><%= link_to 'The Lounge', items_path %></li>
+						<li><%= link_to 'Dorm Room', user_path(current_user) %></li>
+						<li><%= link_to 'Your Bag', bag_path(current_user) %></li>
+					</ul>
+				<% else %>
+					<%= link_to "Sign up", signup_path %> or
+					<%= link_to "log in", login_path %>
+				<% end %>
+			</div>
+		</div>
+		<div id="content">
+			<%= yield %>
+		</div>
+</div>
+
+</body>
+</html>

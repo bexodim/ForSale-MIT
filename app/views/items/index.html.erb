@@ -1,0 +1,54 @@
+<div id="head">The Lounge</div>
+
+<table class='itemlist'>
+  <tr>
+    <th></th>
+    <th>Item</th>
+    <th>Owner</th>
+    <th>Status</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+<% @items.reverse.each do |item| %>
+	<% if item.status != 'bought' %>
+		<% @room = Room.find(item.room_id) #the Room this item is in %>
+		<% @owner = User.find(@room.user_id).kerberos %>
+  <tr>
+    <td class='image'>
+		<% if item.photo.exists? then %>
+			<%= link_to item do %><p><%= image_tag item.photo.url(:standard) %></p><% end %>
+		<% end %>
+	</td>
+    <td><%= link_to item.name, item %></td>
+    <td><%= @owner %></td>
+    <td><%= item.status %></td>
+    <td><%= number_to_currency(item.price) %></td>
+    <td><%= item.description %></td>
+    <td><% if item.room != current_user.room %>
+			<% if item.status == 'claimed' %>
+				<% if item.bag_id != current_user.bag.id %>
+					Claimed
+				<% else %>
+					<%= link_to 'In Your Bag Already', bag_path(current_user) %>
+				<% end %>
+			<% else %>
+				<%= link_to 'Add Item to Bag', addto_path(item.id) %>
+			<% end %>
+		<% elsif item.status != 'claimed' %>
+			<%= link_to 'Edit Item', edit_item_path(item) %>
+		<% end %>
+	</td>
+  </tr>	
+	<% end %>
+<% end %>
+  <tr>
+	<td class='image'></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+  </tr>
+</table>

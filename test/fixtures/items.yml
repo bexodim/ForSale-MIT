@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  room: 
+  status: MyString
+  name: MyString
+  price: 
+  price: 
+  description: MyText
+  image: MyString
+
+two:
+  room: 
+  status: MyString
+  name: MyString
+  price: 
+  price: 
+  description: MyText
+  image: MyString

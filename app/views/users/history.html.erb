@@ -1,0 +1,32 @@
+<% @room = Room.where(:kerberos => @user.kerberos).first %>
+<p id="notice"><%= notice %></p>
+
+<h2>Welcome to your Dorm Room <%= @user.kerberos %>!</h2>
+<p>Below you will find your stuff for sale, and purchase from other dormrooms.</p>
+<br/>
+<h3>Purchases</h3>
+<table class='home purchases'>
+<tr>
+<th></th>
+<th>Item</th>
+<th>Price</th>
+<th>Owner</th>
+<th>Date</th>
+<th></th>
+<th></th>
+</tr>
+
+<% Item.where(:room_id => @room.id).each do |item| %>
+<tr>
+<td class='image'><img src=<%= item.image %> /></td>
+<td><%= item.name %></td>
+<td><%= number_to_currency(item.price) %></td>
+<td><%= item.room.kerberos %></td>
+<td><%= item.date_updated %></td>
+<td></td>
+<td></td>
+</tr>
+<% end %>
+<br/>
+<%= link_to 'Shop Around', items_path %> |
+<%= link_to 'Your Bag', users_path %>

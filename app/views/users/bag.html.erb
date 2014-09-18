@@ -1,0 +1,43 @@
+<% @bag = Bag.where(:user_id => current_user.id).first %>
+
+<div id="head"><%= current_user.kerberos %>'s Bag</div>
+<br/>
+<table class='itemlist'>
+<tr>
+<th></th>
+<th>Item</th>
+<th>Price</th>
+<th>Owner</th>
+<th>Unclaimed In</th>
+<th></th>
+<th></th>
+</tr>
+
+<% @bag.items.each do |item| %>
+<% if item.status != 'bought' %>
+<% @owner = Room.find(item.room_id) %>
+<tr>
+<td class='image'>
+<% if item.photo.exists? then %>
+	<%= image_tag item.photo.url(:standard) %>
+<% end %>
+</td>
+<td><%= link_to item.name, item %></td>
+<td><%= number_to_currency(item.price) %></td>
+<td><%= User.find(@owner.user_id).kerberos %></td>
+<td><%= ((3600 - (Time.now.utc - item.updated_at.utc))/60).ceil %>mins</td>
+<td><%= link_to 'Remove Item from Bag', removefrom_path(item.id) %></td>
+<td></td>
+</tr>
+<% end %>
+<% end %>
+<tr>
+<td><%= link_to 'Checkout', checkout_path, :confirm => "Are you sure you want to checkout at this time?  This cannot be undone." %></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
